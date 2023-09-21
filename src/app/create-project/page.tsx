@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 
 const CreateProject = async () => {
     const session = await getCurrentUser()
+    console.log({session})
     if (!session.user) redirect("/")
 
     return (
