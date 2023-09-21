@@ -10,8 +10,9 @@ type EditProjectProps = {
 }
 
 const EditProject = async ({ params: { id } }: EditProjectProps) => {
-    const session = await getCurrentUser()
-    if (!session.user) redirect("/")
+   const session = await getCurrentUser()
+    if (!session.user || !session.user.email) redirect("/")
+    const user = await getUser(session.user.email);
 
     const result = await GetProjectDetails(id) as { project?: ProjectInterface }
 
@@ -20,7 +21,7 @@ const EditProject = async ({ params: { id } }: EditProjectProps) => {
             <h3 className="modal-head-text">Edit a project</h3>
             <ProjectForm
                 type="edit"
-                session={session}
+                user={user}
                 project={result?.project}
             />
         </Modal>
