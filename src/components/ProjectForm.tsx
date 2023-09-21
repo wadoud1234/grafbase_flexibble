@@ -20,7 +20,8 @@ type ProjectFormProps = {
 
 const ProjectForm = ({ type, user, project }: ProjectFormProps) => {
     const router = useRouter()
-
+    console.log({user,id:user?.id});
+    
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [form, setForm] = useState({
         title: project?.title || "",
