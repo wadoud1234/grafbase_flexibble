@@ -4,13 +4,14 @@ import getCurrentUser from "../../../../actions/getCurrentUser"
 import { redirect } from "next/navigation"
 import GetProjectDetails from "@/libs/graphql/query/fetchProject"
 import { ProjectInterface } from "@/common.types"
+import { getUser } from "@/libs/graphql/query"
 
 type EditProjectProps = {
     params: { id: string }
 }
 
 const EditProject = async ({ params: { id } }: EditProjectProps) => {
-   const session = await getCurrentUser()
+    const session = await getCurrentUser()
     if (!session.user || !session.user.email) redirect("/")
     const user = await getUser(session.user.email);
 
