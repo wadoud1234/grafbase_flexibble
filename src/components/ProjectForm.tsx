@@ -36,10 +36,12 @@ const ProjectForm = ({ type, session, project }: ProjectFormProps) => {
         setIsSubmitting(true)
 
         const { token } = await fetchToken()
-
+        console.log({token});
+        
         try {
             if (type === "create") {
-                await CreateNewProject(form, session?.user?.id, token)
+                console.log({token,form,userId:session?.user?.id})
+                await CreateNewProject(form, session?.user?.id, token).then(res=>console.log("create project response ===> ",res));
                 router.push(`/`)
             }
             if (type === "edit") {
