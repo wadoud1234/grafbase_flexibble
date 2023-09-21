@@ -27,7 +27,7 @@ const CreateNewProject = async (form: ProjectForm, creatorId: string, token: str
         const variables = {
             input: {
                 ...form,
-                image: imageUrl.url,
+                imageUrl: imageUrl.url,
                 createdBy: {
                     link: creatorId
                 }
