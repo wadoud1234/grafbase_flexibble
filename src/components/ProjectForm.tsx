@@ -14,13 +14,13 @@ import EditProject from "@/libs/graphql/mutations/editProject";
 
 type ProjectFormProps = {
     type: "create" | "edit"
-    session: SessionInterface
+    user: any,
     project?: ProjectInterface
 }
 
-const ProjectForm = ({ type, session, project }: ProjectFormProps) => {
+const ProjectForm = ({ type, user, project }: ProjectFormProps) => {
     const router = useRouter()
-    console.log("session from the form ==> ",{session});
+
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [form, setForm] = useState({
         title: project?.title || "",
@@ -36,12 +36,12 @@ const ProjectForm = ({ type, session, project }: ProjectFormProps) => {
         setIsSubmitting(true)
 
         const { token } = await fetchToken()
-        console.log({token});
-        
+        console.log({ token });
+
         try {
             if (type === "create") {
-                console.log({token,form,userId:session?.user?.id})
-                await CreateNewProject(form, session?.user?.id, token).then(res=>console.log("create project response ===> ",res));
+                console.log({ form, userId: user?.id, token });
+                await CreateNewProject(form, user?.id, token).then(res => console.log("create project response ==> ", res))
                 router.push(`/`)
             }
             if (type === "edit") {
