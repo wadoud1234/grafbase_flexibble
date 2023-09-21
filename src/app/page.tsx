@@ -7,7 +7,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/session";
 import Categories from "@/components/Categories";
 import LoadMore from "@/components/LoadMore";
-import GetCurrentUser from "@/actions/getCurrentUser";
+
 type ProjectSearch = {
     projectSearch: {
         edges: { node: ProjectInterface }[],
