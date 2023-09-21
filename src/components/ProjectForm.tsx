@@ -20,7 +20,7 @@ type ProjectFormProps = {
 
 const ProjectForm = ({ type, session, project }: ProjectFormProps) => {
     const router = useRouter()
-
+    console.log("session from the form ==> ",{session});
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [form, setForm] = useState({
         title: project?.title || "",
